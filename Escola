@@ -1,0 +1,101 @@
+-- Cria tabela de alunos 
+create table aluno(
+id int auto_increment primary key,
+nome varchar(255) not null,
+dataNascimento date,
+genero char,
+endereco varchar(255),
+contato varchar(255)
+);
+
+
+
+
+-- Cria tabela de professores
+create table professores(
+id int auto_increment primary key,
+nomeProfessor varchar(255) not null,
+dataNascimento date,
+genero char,
+endereco varchar(255),
+contato varchar(255)
+);
+
+
+
+-- Cria a tabela de disciplina
+create table disciplina (
+iddisciplina int auto_increment primary key,
+nomeDisciplina varchar(255) not null
+);
+
+-- Cria tabela de turmas
+create table turmas (
+idTurmas int auto_increment primary key,
+nomeTurma varchar(255) not null,
+anoLetivo int,
+professorResponsavel int,
+foreign key (professorResponsavel) references professores (id)
+);
+
+-- Cria tabela notas
+create table notas (
+idNota int auto_increment primary key,
+idAluno int,
+idDisciplina int,
+nota decimal (5, 2),
+foreign key (idAluno) references aluno (id),
+foreign key (idDisciplina) references disciplina (iddisciplina)
+);
+
+-- Cria a tabaela frequencia
+create table frequencia (
+idFrequencia int auto_increment primary key,
+idAluno int,
+idDisciplina int,
+dia date,
+presenca boolean,
+foreign key (idAluno) references aluno (id),
+foreign key (idDisciplina) references disciplina (iddisciplina)
+);
+
+-- Cria a tabela de evento escolares
+create table eventoEscolares (
+idEvento int auto_increment primary key,
+nomeEvento varchar(255) not null,
+dataEvento date,
+descricao text,
+endereco varchar(255)
+);
+
+-- Cria a tabela usuario(exemplo de tabela para autenticacao)
+create table usuarios (
+idUsuario int auto_increment primary key,
+nomeUsuario varchar(50) not null,
+senha varchar (255) not null
+);
+
+INSERT INTO aluno (Nome, DataNascimento, Genero, Endereco, Contato)
+VALUES
+  ('Emma Smith', '2005-02-15', 'F', '123 Elm St', 'emma@example.com'),
+  ('Liam Johnson', '2006-04-20', 'M', '456 Oak Rd', 'liam@example.com'),
+  ('Olivia Brown', '2005-07-10', 'F', '789 Maple Ave', 'olivia@example.com'),
+  ('Noah Davis', '2006-01-05', 'M', '101 Pine Rd', 'noah@example.com'),
+  ('Ava Wilson', '2007-03-22', 'F', '222 Birch St', 'ava@example.com'),
+  ('Isabella Lee', '2006-08-15', 'F', '333 Cedar Ave', 'isabella@example.com'),
+  ('Sophia Clark', '2005-06-10', 'F', '444 Spruce Rd', 'sophia@example.com'),
+  ('Mia Hall', '2007-02-28', 'F', '555 Redwood Rd', 'mia@example.com'),
+  ('Harper White', '2006-10-12', 'F', '666 Sequoia Ave', 'harper@example.com'),
+  ('Aiden Anderson', '2005-09-30', 'M', '777 Sycamore St', 'aiden@example.com'),
+  ('Elijah Martinez', '2006-11-08', 'M', '888 Willow Ave', 'elijah@example.com'),
+  ('James Rodriguez', '2005-12-17', 'M', '999 Pinecone Rd', 'james@example.com'),
+  ('Benjamin Lopez', '2007-04-02', 'M', '111 Redbud St', 'benjamin@example.com'),
+  ('Lucas Turner', '2005-05-25', 'M', '222 Cedarwood Rd', 'lucas@example.com'),
+  ('Henry Harris', '2006-07-09', 'M', '333 Forest Ave', 'henry@example.com'),
+  ('Amelia King', '2005-08-31', 'F', '444 Willowbrook Rd', 'amelia@example.com'),
+  ('Evelyn Scott', '2007-01-14', 'F', '555 Birchwood Rd', 'evelyn@example.com'),
+  ('Abigail Adams', '2006-03-19', 'F', '666 Elmwood Ave', 'abigail@example.com'),
+  ('Charlotte Nelson', '2005-09-03', 'F', '777 Maplewood St', 'charlotte@example.com'),
+  ('Elizabeth Baker', '2006-12-27', 'F', '888 Sprucewood Rd', 'elizabeth@example.com');
+
+select * from aluno;
