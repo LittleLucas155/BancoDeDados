@@ -1,0 +1,291 @@
+use escola;
+-- Cria tabela de alunos 
+create table aluno(
+id int auto_increment primary key,
+nome varchar(255) not null,
+dataNascimento date,
+genero char,
+endereco varchar(255),
+contato varchar(255)
+);
+
+
+
+
+-- Cria tabela de professores
+create table professores(
+id int auto_increment primary key,
+nomeProfessor varchar(255) not null,
+dataNascimento date,
+genero char,
+endereco varchar(255),
+contato varchar(255)
+);
+
+
+
+-- Cria a tabela de disciplina
+create table disciplina (
+iddisciplina int auto_increment primary key,
+nomeDisciplina varchar(255) not null
+);
+
+-- Cria tabela de turmas
+create table turmas (
+idTurmas int auto_increment primary key,
+nomeTurma varchar(255) not null,
+anoLetivo int,
+professorResponsavel int,
+foreign key (professorResponsavel) references professores (id)
+);
+
+-- Cria tabela notas
+create table notas (
+idNota int auto_increment primary key,
+idAluno int,
+idDisciplina int,
+nota decimal (5, 2),
+foreign key (idAluno) references aluno (id),
+foreign key (idDisciplina) references disciplina (iddisciplina)
+);
+
+-- Cria a tabaela frequencia
+create table frequencia (
+idFrequencia int auto_increment primary key,
+idAluno int,
+idDisciplina int,
+dia date,
+presenca boolean,
+foreign key (idAluno) references aluno (id),
+foreign key (idDisciplina) references disciplina (iddisciplina)
+);
+
+-- Cria a tabela de evento escolares
+create table eventoEscolares (
+idEvento int auto_increment primary key,
+nomeEvento varchar(255) not null,
+dataEvento date,
+descricao text,
+endereco varchar(255)
+);
+
+-- Cria a tabela usuario(exemplo de tabela para autenticacao)
+create table usuarios (
+idUsuario int auto_increment primary key,
+nomeUsuario varchar(50) not null,
+senha varchar (255) not null
+);
+
+INSERT INTO aluno (Nome, DataNascimento, Genero, Endereco, Contato)
+VALUES
+  ('Emma Smith', '2005-02-15', 'F', '123 Elm St', 'emma@example.com'),
+  ('Liam Johnson', '2006-04-20', 'M', '456 Oak Rd', 'liam@example.com'),
+  ('Olivia Brown', '2005-07-10', 'F', '789 Maple Ave', 'olivia@example.com'),
+  ('Noah Davis', '2006-01-05', 'M', '101 Pine Rd', 'noah@example.com'),
+  ('Ava Wilson', '2007-03-22', 'F', '222 Birch St', 'ava@example.com'),
+  ('Isabella Lee', '2006-08-15', 'F', '333 Cedar Ave', 'isabella@example.com'),
+  ('Sophia Clark', '2005-06-10', 'F', '444 Spruce Rd', 'sophia@example.com'),
+  ('Mia Hall', '2007-02-28', 'F', '555 Redwood Rd', 'mia@example.com'),
+  ('Harper White', '2006-10-12', 'F', '666 Sequoia Ave', 'harper@example.com'),
+  ('Aiden Anderson', '2005-09-30', 'M', '777 Sycamore St', 'aiden@example.com'),
+  ('Elijah Martinez', '2006-11-08', 'M', '888 Willow Ave', 'elijah@example.com'),
+  ('James Rodriguez', '2005-12-17', 'M', '999 Pinecone Rd', 'james@example.com'),
+  ('Benjamin Lopez', '2007-04-02', 'M', '111 Redbud St', 'benjamin@example.com'),
+  ('Lucas Turner', '2005-05-25', 'M', '222 Cedarwood Rd', 'lucas@example.com'),
+  ('Henry Harris', '2006-07-09', 'M', '333 Forest Ave', 'henry@example.com'),
+  ('Amelia King', '2005-08-31', 'F', '444 Willowbrook Rd', 'amelia@example.com'),
+  ('Evelyn Scott', '2007-01-14', 'F', '555 Birchwood Rd', 'evelyn@example.com'),
+  ('Abigail Adams', '2006-03-19', 'F', '666 Elmwood Ave', 'abigail@example.com'),
+  ('Charlotte Nelson', '2005-09-03', 'F', '777 Maplewood St', 'charlotte@example.com'),
+  ('Elizabeth Baker', '2006-12-27', 'F', '888 Sprucewood Rd', 'elizabeth@example.com');
+
+select * from aluno;
+
+INSERT INTO aluno (nome, dataNascimento, genero, endereco, contato) VALUES 
+('Aluno1', '2003-01-01', 'M', 'Endereco1', 'Contato1'),
+('Aluno2', '2004-02-02', 'F', 'Endereco2', 'Contato2'),
+('Aluno3', '2005-03-03', 'M', 'Endereco3', 'Contato3'),
+('Aluno4', '2006-04-04', 'F', 'Endereco4', 'Contato4'),
+('Aluno5', '2007-05-05', 'M', 'Endereco5', 'Contato5'),
+('Aluno6', '2008-06-06', 'F', 'Endereco6', 'Contato6'),
+('Aluno7', '2009-07-07', 'M', 'Endereco7', 'Contato7'),
+('Aluno8', '2010-08-08', 'F', 'Endereco8', 'Contato8'),
+('Aluno9', '2011-09-09', 'M', 'Endereco9', 'Contato9'),
+('Aluno10', '2012-10-10', 'F', 'Endereco10', 'Contato10'),
+('Aluno11', '2013-11-11', 'M', 'Endereco11', 'Contato11'),
+('Aluno12', '2014-12-12', 'F', 'Endereco12', 'Contato12'),
+('Aluno13', '2015-01-13', 'M', 'Endereco13', 'Contato13'),
+('Aluno14', '2016-02-14', 'F', 'Endereco14', 'Contato14'),
+('Aluno15', '2017-03-15', 'M', 'Endereco15', 'Contato15'),
+('Aluno16', '2018-04-16', 'F', 'Endereco16', 'Contato16'),
+('Aluno17', '2019-05-17', 'M', 'Endereco17', 'Contato17'),
+('Aluno18', '2020-06-18', 'F', 'Endereco18', 'Contato18'),
+('Aluno19', '2021-07-19', 'M', 'Endereco19', 'Contato19'),
+('Aluno20', '2022-08-20', 'F', 'Endereco20', 'Contato20');
+
+INSERT INTO professores (nomeProfessor, dataNascimento, genero, endereco, contato) VALUES 
+('Professor1', '1970-01-01', 'M', 'Endereco1', 'Contato1'),
+('Professor2', '1971-02-02', 'F', 'Endereco2', 'Contato2'),
+('Professor3', '1972-03-03', 'M', 'Endereco3', 'Contato3'),
+('Professor4', '1973-04-04', 'F', 'Endereco4', 'Contato4'),
+('Professor5', '1974-05-05', 'M', 'Endereco5', 'Contato5'),
+('Professor6', '1975-06-06', 'F', 'Endereco6', 'Contato6'),
+('Professor7', '1976-07-07', 'M', 'Endereco7', 'Contato7'),
+('Professor8', '1977-08-08', 'F', 'Endereco8', 'Contato8'),
+('Professor9', '1978-09-09', 'M', 'Endereco9', 'Contato9'),
+('Professor10', '1979-10-10', 'F', 'Endereco10', 'Contato10'),
+('Professor11', '1980-11-11', 'M', 'Endereco11', 'Contato11'),
+('Professor12', '1981-12-12', 'F', 'Endereco12', 'Contato12'),
+('Professor13', '1982-01-13', 'M', 'Endereco13', 'Contato13'),
+('Professor14', '1983-02-14', 'F', 'Endereco14', 'Contato14'),
+('Professor15', '1984-03-15', 'M', 'Endereco15', 'Contato15'),
+('Professor16', '1985-04-16', 'F', 'Endereco16', 'Contato16'),
+('Professor17', '1986-05-17', 'M', 'Endereco17', 'Contato17'),
+('Professor18', '1987-06-18', 'F', 'Endereco18', 'Contato18'),
+('Professor19', '1988-07-19', 'M', 'Endereco19', 'Contato19'),
+('Professor20', '1989-08-20', 'F', 'Endereco20', 'Contato20');
+
+INSERT INTO disciplina (nomeDisciplina) VALUES 
+('Matemática'),
+('Física'),
+('Química'),
+('Biologia'),
+('História'),
+('Geografia'),
+('Português'),
+('Inglês'),
+('Espanhol'),
+('Artes'),
+('Educação Física'),
+('Filosofia'),
+('Sociologia'),
+('Informática'),
+('Economia'),
+('Administração'),
+('Marketing'),
+('Fotografia'),
+('Música'),
+('Dança');
+
+INSERT INTO turmas (nomeTurma, anoLetivo, professorResponsavel) VALUES 
+('Turma A', 2023, 1),
+('Turma B', 2023, 2),
+('Turma C', 2023, 3),
+('Turma D', 2023, 4),
+('Turma E', 2023, 5),
+('Turma F', 2023, 6),
+('Turma G', 2023, 7),
+('Turma H', 2023, 8),
+('Turma I', 2023, 9),
+('Turma J', 2023, 10),
+('Turma K', 2023, 11),
+('Turma L', 2023, 12),
+('Turma M', 2023, 13),
+('Turma N', 2023, 14),
+('Turma O', 2023, 15),
+('Turma P', 2023, 16),
+('Turma Q', 2023, 17),
+('Turma R', 2023, 18),
+('Turma S', 2023, 19),
+('Turma T', 2023, 20);
+
+INSERT INTO notas (idAluno, idDisciplina, nota) VALUES 
+(1, 1, 8.5),
+(2, 2, 7.2),
+(3, 3, 6.8),
+(4, 4, 9.3),
+(5, 5, 7.5),
+(6, 6, 8.0),
+(7, 7, 6.5),
+(8, 8, 9.0),
+(9, 9, 7.8),
+(10, 10, 8.2),
+(11, 11, 9.5),
+(12, 12, 8.7),
+(13, 13, 7.0),
+(14, 14, 9.1),
+(15, 15, 6.9),
+(16, 16, 8.4),
+(17, 17, 7.3),
+(18, 18, 9.2),
+(19, 19, 8.1),
+(20, 20, 7.7);
+
+INSERT INTO frequencia (idAluno, idDisciplina, dia, presenca) VALUES 
+(1, 1, '2023-10-01', true),
+(2, 2, '2023-10-01', true),
+(3, 3, '2023-10-01', false),
+(4, 4, '2023-10-01', true),
+(5, 5, '2023-10-01', true),
+(6, 6, '2023-10-01', false),
+(7, 7, '2023-10-01', true),
+(8, 8, '2023-10-01', true),
+(9, 9, '2023-10-01', false),
+(10, 10, '2023-10-01', true),
+(11, 11, '2023-10-01', true),
+(12, 12, '2023-10-01', false),
+(13, 13, '2023-10-01', true),
+(14, 14, '2023-10-01', true),
+(15, 15, '2023-10-01', false),
+(16, 16, '2023-10-01', true),
+(17, 17, '2023-10-01', true),
+(18, 18, '2023-10-01', false),
+(19, 19, '2023-10-01', true),
+(20, 20, '2023-10-01', true);
+
+INSERT INTO eventoEscolares (nomeEvento, dataEvento, descricao, endereco) VALUES 
+('Evento1', '2023-11-01', 'Descrição do Evento 1', 'Endereço do Evento 1'),
+('Evento2', '2023-11-05', 'Descrição do Evento 2', 'Endereço do Evento 2'),
+('Evento3', '2023-11-10', 'Descrição do Evento 3', 'Endereço do Evento 3'),
+('Evento4', '2023-11-15', 'Descrição do Evento 4', 'Endereço do Evento 4'),
+('Evento5', '2023-11-20', 'Descrição do Evento 5', 'Endereço do Evento 5'),
+('Evento6', '2023-11-25', 'Descrição do Evento 6', 'Endereço do Evento 6'),
+('Evento7', '2023-11-30', 'Descrição do Evento 7', 'Endereço do Evento 7'),
+('Evento8', '2023-12-01', 'Descrição do Evento 8', 'Endereço do Evento 8'),
+('Evento9', '2023-12-05', 'Descrição do Evento 9', 'Endereço do Evento 9'),
+('Evento10', '2023-12-10', 'Descrição do Evento 10', 'Endereço do Evento 10'),
+('Evento11', '2023-12-15', 'Descrição do Evento 11', 'Endereço do Evento 11'),
+('Evento12', '2023-12-20', 'Descrição do Evento 12', 'Endereço do Evento 12'),
+('Evento13', '2023-12-25', 'Descrição do Evento 13', 'Endereço do Evento 13'),
+('Evento14', '2023-12-30', 'Descrição do Evento 14', 'Endereço do Evento 14'),
+('Evento15', '2024-01-01', 'Descrição do Evento 15', 'Endereço do Evento 15'),
+('Evento16', '2024-01-05', 'Descrição do Evento 16', 'Endereço do Evento 16'),
+('Evento17', '2024-01-10', 'Descrição do Evento 17', 'Endereço do Evento 17'),
+('Evento18', '2024-01-15', 'Descrição do Evento 18', 'Endereço do Evento 18'),
+('Evento19', '2024-01-20', 'Descrição do Evento 19', 'Endereço do Evento 19'),
+('Evento20', '2024-01-25', 'Descrição do Evento 20', 'Endereço do Evento 20');
+ 
+
+INSERT INTO usuarios (nomeUsuario, senha) VALUES 
+('usuario1', 'senha1'),
+('usuario2', 'senha2'),
+('usuario3', 'senha3'),
+('usuario4', 'senha4'),
+('usuario5', 'senha5'),
+('usuario6', 'senha6'),
+('usuario7', 'senha7'),
+('usuario8', 'senha8'),
+('usuario9', 'senha9'),
+('usuario10', 'senha10'),
+('usuario11', 'senha11'),
+('usuario12', 'senha12'),
+('usuario13', 'senha13'),
+('usuario14', 'senha14'),
+('usuario15', 'senha15'),
+('usuario16', 'senha16'),
+('usuario17', 'senha17'),
+('usuario18', 'senha18'),
+('usuario19', 'senha19'),
+('usuario20', 'senha20');
+
+select * from usuarios;
+
+select * from aluno 
+ORDER BY dataNascimento; 
+
+select * from turmas where professorResponsavel;
+
+
+
+ 
+
